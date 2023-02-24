@@ -36,11 +36,23 @@ class ApplicationController < ActionController::Base
 
   def calculate_square_root
 
-    @num = params.fetch("number").to_i
+    @num = params.fetch("number").to_f
     @result = @num ** 0.5
 
     render({ :template => "calculation_templates/square_root_results.html.erb"})
   end
   
+  def blank_payment_form
+
+    render({ :template => "calculation_templates/payment_form.html.erb"})
+  end
+
+  def calculate_payment
+
+    @num = params.fetch("number").to_f
+    @result = @num ** 0.5
+
+    render({ :template => "calculation_templates/payment_results.html.erb"})
+  end
 
 end
