@@ -47,12 +47,25 @@ class ApplicationController < ActionController::Base
     render({ :template => "calculation_templates/payment_form.html.erb"})
   end
 
-  def calculate_payment
+#def calculate_payment
 
-    @num = params.fetch("number").to_f
-    @result = @num ** 0.5
+#@user_apr = params.fetch("user_min").to_f
+#@user_years = params.fetch("user_max").to_f
+#@user_principal = params.fetch("user_max").to_f
+#@result = rand(@lower..@upper)
+
+#render({ :template => "calculation_templates/payment_results.html.erb"})
+  #end
+
+  def calculate_payment
+    @user_apr = params[:user_apr].to_f
+    @user_years = params[:user_years].to_i
+    @user_principal = params[:user_principal].to_f
+
+    monthly_interest_rate = @user_apr / 1200
+    num_payments = @user_years * 12
+    @result = (@user_principal * monthly_interest_rate) / (1 - (1 + monthly_interest_rate)**-num_payments)
 
     render({ :template => "calculation_templates/payment_results.html.erb"})
   end
-
 end
