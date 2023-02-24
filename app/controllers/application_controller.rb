@@ -65,7 +65,6 @@ class ApplicationController < ActionController::Base
     monthly_interest_rate = @user_apr / 1200
     num_payments = @user_years * 12
     @result = (@user_principal * monthly_interest_rate) / (1 - (1 + monthly_interest_rate)**-num_payments)
-
     render({ :template => "calculation_templates/payment_results.html.erb"})
   end
 end
